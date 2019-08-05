@@ -7,10 +7,10 @@ class Plugin {
 
 	public function registerServices() {
 		$this->AssetManager = new AssetManager();
-        $this->AssetManager->hooks();
-        
-        $this->TemplateManager = new TemplateManager();
-        $this->TemplateManager->hooks();
+		$this->AssetManager->hooks();
+
+		$this->TemplateManager = new TemplateManager();
+		$this->TemplateManager->hooks();
 	}
 
 	public function __get( $name ) {
