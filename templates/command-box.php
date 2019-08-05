@@ -4,6 +4,7 @@
       <span class="title">
         <?php echo esc_html__( 'Command Palette', 'snappy-command-palette' ); ?>
       </span>
+      <span class="divider"></span>
       <span class="close">
         <span class="dashicons dashicons-no-alt"></span>
       </span>

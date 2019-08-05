@@ -34,6 +34,14 @@
             font-weight: 700;
         }
 
+        .divider {
+            height: 15px;
+            width: 1px;
+            background: #ccc;
+            margin-left: auto;
+            margin-right: 10px;
+        }
+
         .close {
             position: relative;
             cursor: pointer;
