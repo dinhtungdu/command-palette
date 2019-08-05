@@ -21,8 +21,8 @@
     "@babel/core": "^7.3.3",
     "@babel/preset-env": "^7.3.1",
     "@babel/register": "^7.0.0",
-    "@wordpress/browserslist-config": "^2.2.3",
-    "autoprefixer": "^9.4.7",
+    "@wordpress/browserslist-config": "^2.6.0",
+    "autoprefixer": "^9.6.1",
     "babel-eslint": "^10.0.1",
     "babelify": "^10.0.0",
     "beeper": "^1.1.1",
@@ -85,5 +85,8 @@
       "./vendor/bin/phpcbf --standard=WordPress -q",
       "git add"
     ]
-  }
+  },
+  "browserslist": [
+    "extends @wordpress/browserslist-config"
+  ]
 }
