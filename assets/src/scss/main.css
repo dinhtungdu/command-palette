@@ -1,0 +1,10 @@
+
+#scp-command-box {
+    width: 100px;
+    height: 100px;
+    background: black;
+    position: fixed;
+    z-index: 9999999;
+    top: 0;
+    left: 0;
+}

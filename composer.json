@@ -1,0 +1,14 @@
+{
+    "autoload": {
+        "psr-4": {
+            "SnappyCP\\": "src/"
+        }
+    },
+   	"require-dev": {
+		"10up/phpcs-composer": "dev-master"
+	},
+	"scripts": {
+		"lint": "phpcs --standard=WordPress src",
+		"fix": "phpcbf --standard=WordPress src"
+	}
+}
