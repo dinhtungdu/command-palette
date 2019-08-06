@@ -1,4 +1,4 @@
-#scp-command-wrapper {
+#command-palette-wrapper {
 	position: fixed;
 	display: none;
 	justify-content: center;
@@ -10,7 +10,7 @@
 	height: 100%;
 }
 
-#scp-command-dialog {
+#command-palette-dialog {
 	width: 650px;
 	background: #f1f3f5;
 	position: absolute;
@@ -59,7 +59,7 @@
 	}
 }
 
-#scp-command-search {
+#command-palette-search {
 	display: flex;
 	align-items: center;
 	padding: 13px 15px;

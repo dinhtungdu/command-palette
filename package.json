@@ -1,5 +1,5 @@
 {
-  "name": "snappy-command-palette",
+  "name": "command-palette",
   "version": "1.0.0",
   "description": "Bring power of text editor command palette to WordPress Admin.",
   "author": "Tung Du",
@@ -28,6 +28,7 @@
     "beeper": "^1.1.1",
     "browser-sync": "^2.26.3",
     "browserify": "^16.2.3",
+    "browserify-shim": "^3.8.14",
     "css-mqpacker": "^7.0.0",
     "del": "^3.0.0",
     "eslint": "^5.13.0",
@@ -58,6 +59,7 @@
     "gulp.spritesmith": "^6.9.0",
     "husky": "^1.3.1",
     "lint-staged": "^8.1.4",
+    "mousetrap": "^1.6.3",
     "node-sass": "^4.11.0",
     "prettier-eslint-cli": "^4.7.1",
     "stylelint": "^9.10.1",
@@ -88,5 +90,13 @@
   },
   "browserslist": [
     "extends @wordpress/browserslist-config"
-  ]
+  ],
+  "browserify-shim": {
+    "jQuery": "global:jQuery"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  }
 }

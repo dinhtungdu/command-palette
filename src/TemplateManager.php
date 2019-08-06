@@ -1,5 +1,5 @@
 <?php
-namespace SnappyCP;
+namespace CommandPalette;
 
 class TemplateManager {
 	public function hooks() {

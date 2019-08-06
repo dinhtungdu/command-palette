@@ -1,5 +1,5 @@
 <?php
-namespace SnappyCP;
+namespace CommandPalette;
 
 class AssetManager {
 	public function hooks() {

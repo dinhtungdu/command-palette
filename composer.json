@@ -1,7 +1,7 @@
 {
     "autoload": {
         "psr-4": {
-            "SnappyCP\\": "src/"
+            "CommandPalette\\": "src/"
         }
     },
    	"require-dev": {
