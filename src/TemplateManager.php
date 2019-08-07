@@ -7,6 +7,6 @@ class TemplateManager {
 	}
 
 	public function commandBoxTemplate() {
-		include_once SCP_DIR . 'templates/command-box.php';
+		include_once SCP_DIR . 'templates/command-palette.php';
 	}
 }

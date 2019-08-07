@@ -51,8 +51,8 @@ class CommandPalette {
 			this.dialog.contains( event.target ) ||
 			'none' == this.wrapper.style.display
 		) {
-return;
-}
+			return;
+		}
 
 		this.hideWrapper();
 	}
