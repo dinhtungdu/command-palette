@@ -13,8 +13,8 @@
 			<span class="dashicons dashicons-search"></span>
 			<input id="command-palette-search-input" type="text" placeholder="<?php echo esc_attr__( 'Type to find anything', 'command-palette' ); ?>">
 		</div>
-		<div id="command-palette-results">
-			<?php do_action( 'command_palette_results' ); ?>
+		<div id="command-palette-items">
+			<?php do_action( 'command_palette_items' ); ?>
 		</div>
   </div>
 </div>

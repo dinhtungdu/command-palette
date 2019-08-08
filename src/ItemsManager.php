@@ -1,25 +1,27 @@
 <?php
 namespace CommandPalette;
 
-class ResultsManager {
-	private $results;
+class ItemsManager {
+	private $items;
 
 	public function getAll() {
-		return $this->results;
+		return $this->items;
 	}
 
 	public function get( $key ) {
-		if ( ! in_array( $key, $this->results ) ) {
+		if ( ! in_array( $key, $this->items ) ) {
 			return null;
 		}
 
-		return $this->results[ $key ];
+		return $this->items[ $key ];
 	}
 
 	public function add( $data ) {
 		$default = [
+			'type'     => 'url',
 			'key'      => '',
 			'url'      => '',
+			'script'   => '',
 			'category' => __( 'General', 'command-palette' ),
 		];
 
@@ -29,7 +31,7 @@ class ResultsManager {
 			return;
 		}
 
-		$this->results[ $data['key'] ] = [
+		$this->items[ $data['key'] ] = [
 			'url'      => $data['url'],
 			'category' => $data['category'],
 		];
