@@ -14,7 +14,7 @@
 			<input id="command-palette-search-input" type="text" placeholder="<?php echo esc_attr__( 'Type to find anything', 'command-palette' ); ?>">
 		</div>
 		<div id="command-palette-items">
-			<?php do_action( 'command_palette_items' ); ?>
+			<?php do_action( 'command_palette_items_output' ); ?>
 		</div>
   </div>
 </div>

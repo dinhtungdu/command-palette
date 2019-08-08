@@ -82,3 +82,37 @@
 		margin: 0;
 	}
 }
+
+#command-palette-items {
+	height: 38vh;
+	overflow-y: scroll;
+	a {
+		display: flex;
+		text-decoration: none;
+		padding: 6px 15px;
+		color: #495157;
+		align-items: center;
+
+		&::before {
+			content: attr(data-type);
+			color: #999;
+			border: 1px solid #999;
+			padding: 1px 2px;
+			border-radius: 2px;
+			font-size: 8px;
+			text-transform: uppercase;
+			margin-right: 10px;
+			line-height: 1;
+		}
+
+		&:hover {
+			background: #71d7f7;
+			color: #fff;
+
+			&::before {
+				color: #fff;
+				border-color: #fff;
+			}
+		}
+	}
+}

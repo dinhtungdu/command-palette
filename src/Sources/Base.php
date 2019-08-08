@@ -9,27 +9,34 @@ abstract class Base {
 	abstract protected function prepareItems();
 
 	public function getItems() {
+		$this->prepareItems();
 		return $this->items;
 	}
 
 	protected function addItem( $data ) {
 		$default = [
-			'type'     => 'url',
-			'key'      => '',
-			'url'      => '',
-			'script'   => '',
-			'category' => __( 'General', 'command-palette' ),
+			'type'       => __( 'Link', 'command-palette' ),
+			'id'         => '',
+			'url'        => '',
+			'title'      => '',
+			'script'     => '',
+			'capability' => 'read',
+			'category'   => __( 'General', 'command-palette' ),
 		];
 
 		$data = wp_parse_args( $data, $default );
 
-		if ( ! $data['key'] && ! $data['url'] ) {
+		if ( ! $data['id'] && ! $data['url'] && ! $data['title'] ) {
 			return;
 		}
 
-		$this->items[ $data['key'] ] = [
-			'url'      => $data['url'],
-			'category' => $data['category'],
+		$this->items[ $data['id'] ] = [
+			'type'       => $data['type'],
+			'id'         => $data['id'],
+			'title'      => $data['title'],
+			'url'        => $data['url'],
+			'category'   => $data['category'],
+			'capability' => $data['capability'],
 		];
 	}
 }

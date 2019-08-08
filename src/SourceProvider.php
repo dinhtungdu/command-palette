@@ -1,25 +1,21 @@
 <?php
 namespace CommandPalette;
 
-use PHP_CodeSniffer\Reports\Source;
-
 class SourceProvider {
-	private $registeredSources;
-
-	public function __construct() {
-		$this->registerSources();
-	}
+	private $registeredSources = [];
 
 	public function getSources() {
 		return apply_filters(
 			'command_palette_sources',
-			[
-				'AdminPages',
-			]
+			[ 'AdminPages', 'Custom' ]
 		);
 	}
 
 	public function getRegisteredSources() {
+		if ( empty( $this->registeredSources ) ) {
+			$this->registerSources();
+		}
+
 		return $this->registeredSources;
 	}
 
@@ -31,6 +27,7 @@ class SourceProvider {
 	}
 
 	private function registerSingleSource( $sourceClass ) {
+		$sourceClass    = __NAMESPACE__ . '\\Sources\\' . $sourceClass;
 		$sourceInstance = new $sourceClass();
 
 		if ( ! $sourceInstance instanceof Sources\Base ) {

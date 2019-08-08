@@ -11,6 +11,11 @@ class Plugin {
 
 		$this->TemplateManager = new TemplateManager();
 		$this->TemplateManager->hooks();
+
+		$this->SourceProvider = new SourceProvider();
+
+		$this->ItemManager = new ItemManager( $this->SourceProvider->getRegisteredSources() );
+		$this->ItemManager->hooks();
 	}
 
 	public function __get( $name ) {
