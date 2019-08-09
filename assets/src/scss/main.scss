@@ -84,7 +84,7 @@
 }
 
 #command-palette-items {
-	height: 38vh;
+	max-height: 38vh;
 	overflow-y: scroll;
 	a {
 		display: flex;

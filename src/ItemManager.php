@@ -9,31 +9,22 @@ class ItemManager {
 	}
 
 	public function hooks() {
-		add_action( 'command_palette_items_output', [ $this, 'printItems' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'printItemsJson' ], 10 );
 	}
 
-	public function printItems() {
+	public function printItemsJson() {
+		wp_localize_script( 'command-palette-main', 'CPItems', $this->getItemsForCurrentUser() );
+	}
+
+	private function getItemsForCurrentUser() {
 		$items = $this->getCachedItems();
 		$items = apply_filters( 'command_palette_items', $items );
 		$items = array_filter( $items, [ $this, 'filterItemsByCapability' ] );
-		foreach ( $items as $item ) {
-			$this->printSingleItem( $item );
-		}
+		return array_values( $items );
 	}
 
 	private function filterItemsByCapability( $item ) {
 		return current_user_can( $item['capability'] );
-	}
-
-	private function printSingleItem( $item ) {
-		printf(
-			'<a href="%s" class="item" data-id="%s" data-category="%s" data-type="%s">%s</a>',
-			esc_url( $item['url'] ),
-			esc_attr( $item['id'] ),
-			esc_attr( $item['category'] ),
-			esc_attr( $item['type'] ),
-			wp_kses_post( $item['title'] )
-		);
 	}
 
 	private function getCachedItems() {
