@@ -84,7 +84,7 @@
 }
 
 #command-palette-items {
-	max-height: 38vh;
+	max-height: 300px;
 	overflow-y: scroll;
 	a {
 		display: flex;
@@ -105,8 +105,7 @@
 			line-height: 1;
 		}
 
-		&.selected,
-		&:hover {
+		&.selected {
 			background: #71d7f7;
 			color: #fff;
 

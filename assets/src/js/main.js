@@ -15,27 +15,46 @@ class CommandPalette {
 		this.dialogClose = document.getElementById( 'command-palette-dialog-close' );
 		this.searchInput = document.getElementById( 'command-palette-search-input' );
 		this.itemsContainer = document.getElementById( 'command-palette-items' );
+		this.selectedItem = false;
 	}
 
 	registerEvents() {
 		this.dialogClose.addEventListener( 'click', this.hideWrapper.bind( this ) );
 		this.searchInput.addEventListener(
-			'keyup',
+			'change',
+			this.debounce( this.filterItems, 100 ).bind( this )
+		);
+		this.searchInput.addEventListener(
+			'blur',
+			this.debounce( this.focusInput, 10 ).bind( this )
+		);
+		this.itemsContainer.addEventListener(
+			'mouseover',
 			this.debounce( event => {
-				this.filterItems( event );
-			}, 100 ).bind( this )
+				if ( event.target && event.target.matches( 'a.item' ) ) {
+this.selectItem( event.target );
+}
+			}, 10 )
 		);
 	}
 
 	registerKeyboardShortcut() {
 		Mousetrap.bind( 'shift shift', () => {
+			this.filterItems();
 			this.showWrapper();
 			this.focusInput();
 		} );
 
-		Mousetrap( this.dialog ).bind( 'enter', () => {
-			this.followSelectedItem();
-		} );
+		Mousetrap( this.wrapper )
+			.bind( 'enter', () => {
+				this.followSelectedItem();
+			} )
+			.bind( 'down', () => {
+				this.goToNextItem();
+			} )
+			.bind( 'up', () => {
+				this.goToPreviousItem();
+			} );
 
 		Mousetrap.bindGlobal( 'esc', this.hideWrapper.bind( this ) );
 	}
@@ -69,7 +88,7 @@ class CommandPalette {
 		this.hideWrapper();
 	}
 
-	filterItems( event ) {
+	filterItems() {
 		var options = {
 			extract: function( el ) {
 				return el.title;
@@ -78,25 +97,34 @@ class CommandPalette {
 
 		this.itemsContainer.innerHTML = '';
 
-		fuzzy.filter( event.target.value, CPItems, options ).map( el => {
+		fuzzy.filter( this.searchInput.value, CPItems, options ).map( el => {
 			this.itemsContainer.innerHTML += `<a href="${el.original.url}" class="item" data-category="${el.original.category}" data-type="${el.original.type}">${el.string}</a>`;
 		} );
 
-		this.hightLightFirstItem();
+		this.selectItem( this.itemsContainer.firstChild );
 	}
 
-	hightLightFirstItem() {
-		this.itemsContainer.firstChild.classList.add( 'selected' );
+	selectItem( element ) {
+		if ( ! element ) {
+			return;
+		}
+		if ( this.isElement( this.selectedItem ) ) {
+			this.selectedItem.classList.remove( 'selected' );
+		}
+		this.selectedItem = element;
+		this.selectedItem.classList.add( 'selected' );
 	}
 
 	followSelectedItem() {
-		var selectedItem = this.itemsContainer.getElementsByClassName( 'selected' );
+		this.selectedItem.click();
+	}
 
-		if ( 1 != selectedItem.length ) {
-return;
-}
+	goToNextItem() {
+		this.selectItem( this.selectedItem.nextElementSibling );
+	}
 
-		selectedItem[0].click();
+	goToPreviousItem() {
+		this.selectItem( this.selectedItem.previousElementSibling );
 	}
 
 	debounce( func, wait, immediate ) {
@@ -117,6 +145,10 @@ return;
 				func.apply( context, args );
 			}
 		};
+	}
+
+	isElement( element ) {
+		return element instanceof Element || element instanceof HTMLDocument;
 	}
 }
 
