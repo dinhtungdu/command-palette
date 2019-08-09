@@ -15,7 +15,7 @@ class AdminPages extends Base {
 				[
 					'id'         => $menuItem[5],
 					'capability' => $menuItem[1],
-					'title'      => $menuItem[0],
+					'title'      => $this->removeSpan( $menuItem[0] ),
 					'url'        => admin_url( $menuItem[2] ),
 					'category'   => __( 'Admin pages', 'command-palette' ),
 				]
@@ -25,5 +25,10 @@ class AdminPages extends Base {
 
 	private function removeInvalidItem( $menuItem ) {
 		return (bool) $menuItem[0];
+	}
+
+	private function removeSpan( $text ) {
+			$text = preg_replace( '/<span.*<\/span>/s', '', $text );
+			return trim( $text );
 	}
 }
