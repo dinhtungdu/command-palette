@@ -77,6 +77,12 @@ class CommandPalette {
 		fuzzy.filter( event.target.value, CPItems, options ).map( el => {
 			this.itemsContainer.innerHTML += `<a href="${el.original.url}" class="item" data-category="${el.original.category}" data-type="${el.original.type}">${el.string}</a>`;
 		} );
+
+		this.hightLightFirstItem();
+	}
+
+	hightLightFirstItem() {
+		this.itemsContainer.firstChild.classList.add( 'selected' );
 	}
 
 	debounce( func, wait, immediate ) {
