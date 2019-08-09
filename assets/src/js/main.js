@@ -21,7 +21,7 @@ class CommandPalette {
 		this.dialogClose.addEventListener( 'click', this.hideWrapper.bind( this ) );
 		this.searchInput.addEventListener(
 			'keyup',
-			this.debounce( function( event ) {
+			this.debounce( event => {
 				this.filterItems( event );
 			}, 100 ).bind( this )
 		);
@@ -31,6 +31,10 @@ class CommandPalette {
 		Mousetrap.bind( 'shift shift', () => {
 			this.showWrapper();
 			this.focusInput();
+		} );
+
+		Mousetrap( this.dialog ).bind( 'enter', () => {
+			this.followSelectedItem();
 		} );
 
 		Mousetrap.bindGlobal( 'esc', this.hideWrapper.bind( this ) );
@@ -83,6 +87,16 @@ class CommandPalette {
 
 	hightLightFirstItem() {
 		this.itemsContainer.firstChild.classList.add( 'selected' );
+	}
+
+	followSelectedItem() {
+		var selectedItem = this.itemsContainer.getElementsByClassName( 'selected' );
+
+		if ( 1 != selectedItem.length ) {
+return;
+}
+
+		selectedItem[0].click();
 	}
 
 	debounce( func, wait, immediate ) {
