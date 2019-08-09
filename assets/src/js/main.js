@@ -32,8 +32,8 @@ class CommandPalette {
 			'mouseover',
 			this.debounce( event => {
 				if ( event.target && event.target.matches( 'a.item' ) ) {
-this.selectItem( event.target );
-}
+					this.selectItem( event.target );
+				}
 			}, 10 )
 		);
 	}
