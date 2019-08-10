@@ -21,21 +21,22 @@ class CommandPalette {
 	registerEvents() {
 		this.dialogClose.addEventListener( 'click', this.hideWrapper.bind( this ) );
 		this.searchInput.addEventListener(
-			'change',
-			this.debounce( this.filterItems, 100 ).bind( this )
+			'keydown',
+			this.debounce( event => {
+				if ( this.isValidCharacter( event.key ) ) {
+					this.filterItems();
+				}
+			}, 100 )
 		);
 		this.searchInput.addEventListener(
 			'blur',
 			this.debounce( this.focusInput, 10 ).bind( this )
 		);
-		this.itemsContainer.addEventListener(
-			'mouseover',
-			this.debounce( event => {
-				if ( event.target && event.target.matches( 'a.item' ) ) {
-					this.selectItem( event.target );
-				}
-			}, 10 )
-		);
+		this.itemsContainer.addEventListener( 'mouseover', event => {
+			if ( event.target && event.target.matches( 'a.item' ) ) {
+				this.selectItem( event.target );
+			}
+		} );
 	}
 
 	registerKeyboardShortcut() {
@@ -149,6 +150,18 @@ class CommandPalette {
 
 	isElement( element ) {
 		return element instanceof Element || element instanceof HTMLDocument;
+	}
+
+	isValidCharacter( char ) {
+		if ( 'Backspace' == char ) {
+			return true;
+		}
+
+		return (
+			-1 < '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(
+				char
+			)
+		);
 	}
 }
 

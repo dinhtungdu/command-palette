@@ -84,6 +84,7 @@
 }
 
 #command-palette-items {
+	position: relative;
 	max-height: 300px;
 	overflow-y: scroll;
 	a {
