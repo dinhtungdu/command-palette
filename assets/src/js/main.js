@@ -99,7 +99,13 @@ class CommandPalette {
 		this.itemsContainer.innerHTML = '';
 
 		fuzzy.filter( this.searchInput.value, CPItems, options ).map( el => {
-			this.itemsContainer.innerHTML += `<a href="${el.original.url}" class="item" data-category="${el.original.category}" data-type="${el.original.type}">${el.string}</a>`;
+			this.itemsContainer.innerHTML += `<a
+				href="${el.original.url}" class="item"
+				data-category="${el.original.category}" data-type="${el.original.type}"
+				${el.original.parent ? 'data-parent="' + el.original.parent + '"' : ''}
+			>
+				<span>${el.string}</span>
+			</a>`;
 		} );
 
 		this.selectItem( this.itemsContainer.firstChild );

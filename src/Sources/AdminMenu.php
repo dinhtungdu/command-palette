@@ -15,16 +15,15 @@ class AdminMenu extends Base {
 			array_filter( $menu, [ $this, 'removeInvalidItem' ] )
 		);
 
-		array_map(
-			[ $this, 'addSubmenuItems' ],
-			$submenu
-		);
+		foreach ( $submenu as $parentMenu => $submenuItems ) {
+			$this->addSubmenuItems( $parentMenu, $submenuItems );
+		}
 	}
 
 	private function addMenuItem( $menuItem ) {
 		$this->addItem(
 			[
-				'id'         => $menuItem[5],
+				'id'         => $menuItem[2],
 				'capability' => $menuItem[1],
 				'title'      => $this->removeSpan( $menuItem[0] ),
 				'url'        => $this->processAdminUrl( $menuItem[2] ),
@@ -33,7 +32,7 @@ class AdminMenu extends Base {
 		);
 	}
 
-	private function addSubmenuItems( $submenuItems ) {
+	private function addSubmenuItems( $parentMenu, $submenuItems ) {
 		foreach ( $submenuItems as $menuItem ) {
 			$this->addItem(
 				[
@@ -42,6 +41,7 @@ class AdminMenu extends Base {
 					'title'      => $this->removeSpan( $menuItem[0] ),
 					'url'        => $this->processAdminUrl( $menuItem[2] ),
 					'category'   => __( 'Admin menu', 'command-palette' ),
+					'parent'     => $this->items[ $parentMenu ]['title'],
 				]
 			);
 		}

@@ -95,6 +95,7 @@
 		align-items: center;
 
 		&::before {
+			order: 5;
 			content: attr(data-type);
 			color: #999;
 			border: 1px solid #999;
@@ -102,8 +103,26 @@
 			border-radius: 2px;
 			font-size: 8px;
 			text-transform: uppercase;
+			line-height: 1;
+			margin-left: auto;
+		}
+
+		&[data-parent]::after {
+			order: 2;
+			content: attr(data-parent);
+			color: #fff;
+			background: #999;
+			border: 1px solid #999;
+			padding: 1px 2px;
+			border-radius: 2px;
+			font-size: 8px;
+			text-transform: uppercase;
 			margin-right: 10px;
 			line-height: 1;
+		}
+
+		span {
+			order: 3;
 		}
 
 		&.selected {

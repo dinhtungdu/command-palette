@@ -21,6 +21,7 @@ abstract class Base {
 			'title'      => '',
 			'script'     => '',
 			'capability' => 'read',
+			'parent'     => '',
 			'category'   => __( 'General', 'command-palette' ),
 		];
 
@@ -36,6 +37,7 @@ abstract class Base {
 			'title'      => $data['title'],
 			'url'        => $data['url'],
 			'category'   => $data['category'],
+			'parent'     => $data['parent'],
 			'capability' => $data['capability'],
 		];
 	}
