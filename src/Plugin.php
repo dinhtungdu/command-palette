@@ -16,6 +16,9 @@ class Plugin {
 
 		$this->ItemManager = new ItemManager( $this->SourceProvider->getRegisteredSources() );
 		$this->ItemManager->hooks();
+
+		$this->NoticeManager = new NoticeManager();
+		$this->NoticeManager->hooks();
 	}
 
 	public function __get( $name ) {

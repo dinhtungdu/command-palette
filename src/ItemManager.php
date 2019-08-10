@@ -10,7 +10,7 @@ class ItemManager {
 
 	public function hooks() {
 		add_action( 'admin_enqueue_scripts', [ $this, 'printItemsJson' ], 10 );
-		add_filter( 'plugin_row_meta', [ $this, 'addDeleteCacheLink' ], 10, 2 );
+		add_filter( 'plugin_action_links_' . plugin_basename( SCP_DIR . '/command-palette.php' ), [ $this, 'addDeleteCacheLink' ] );
 		add_action( 'load-plugins.php', [ $this, 'deleteCachedItems' ] );
 	}
 
@@ -18,11 +18,7 @@ class ItemManager {
 		wp_localize_script( 'command-palette-main', 'CPItems', $this->getItemsForCurrentUser() );
 	}
 
-	public function addDeleteCacheLink( $links, $file ) {
-		if ( strpos( $file, 'command-palette.php' ) === false ) {
-			return $links;
-		}
-
+	public function addDeleteCacheLink( $links ) {
 		$deleteCacheLink = add_query_arg(
 			[
 				'cp_delete_cache' => 'yes',

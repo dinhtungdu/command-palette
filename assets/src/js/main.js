@@ -40,7 +40,7 @@ class CommandPalette {
 	}
 
 	registerKeyboardShortcut() {
-		Mousetrap.bind( 'shift shift', () => {
+		Mousetrap.bind([ 'shift shift', 'command+shift+p', 'ctrl+shift+p' ], () => {
 			this.filterItems();
 			this.showWrapper();
 			this.focusInput();
