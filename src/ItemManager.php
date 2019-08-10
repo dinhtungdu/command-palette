@@ -10,10 +10,48 @@ class ItemManager {
 
 	public function hooks() {
 		add_action( 'admin_enqueue_scripts', [ $this, 'printItemsJson' ], 10 );
+		add_filter( 'plugin_row_meta', [ $this, 'addDeleteCacheLink' ], 10, 2 );
+		add_action( 'load-plugins.php', [ $this, 'deleteCachedItems' ] );
 	}
 
 	public function printItemsJson() {
 		wp_localize_script( 'command-palette-main', 'CPItems', $this->getItemsForCurrentUser() );
+	}
+
+	public function addDeleteCacheLink( $links, $file ) {
+		if ( strpos( $file, 'command-palette.php' ) === false ) {
+			return $links;
+		}
+
+		$deleteCacheLink = add_query_arg(
+			[
+				'cp_delete_cache' => 'yes',
+				'cp_nonce'        => wp_create_nonce( 'delete-items' ),
+			],
+			admin_url( 'plugins.php' )
+		);
+
+		$links['delete_cache'] = sprintf(
+			'<a href="%s">%s</a>',
+			$deleteCacheLink,
+			__( 'Delete cache', 'command-palette' )
+		);
+
+		return $links;
+	}
+
+	public function deleteCachedItems() {
+
+		if (
+			! isset( $_GET['cp_nonce'] )
+			|| ! wp_verify_nonce( $_GET['cp_nonce'], 'delete-items' )
+			|| ! isset( $_GET['cp_delete_cache'] )
+			|| 'yes' != $_GET['cp_delete_cache']
+		) {
+			return;
+		}
+
+		delete_transient( 'command_palette_items' );
 	}
 
 	private function getItemsForCurrentUser() {

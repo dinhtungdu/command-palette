@@ -2,7 +2,7 @@
 namespace CommandPalette\Sources;
 
 abstract class Base {
-	protected $items;
+	protected $items = [];
 
 	abstract public function get_id();
 
