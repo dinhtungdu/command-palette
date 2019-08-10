@@ -6,6 +6,10 @@ class Plugin {
 	private $services = [];
 
 	public function registerServices() {
+		if ( wp_is_mobile() ) {
+			return;
+		}
+
 		$this->AssetManager = new AssetManager();
 		$this->AssetManager->hooks();
 
