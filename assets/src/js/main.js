@@ -109,11 +109,31 @@ class CommandPalette {
 		if ( ! element ) {
 			return;
 		}
+		var oldPosition = this.selectedItem.offsetTop;
 		if ( this.isElement( this.selectedItem ) ) {
 			this.selectedItem.classList.remove( 'selected' );
 		}
 		this.selectedItem = element;
 		this.selectedItem.classList.add( 'selected' );
+		this.maybeScroll( oldPosition, this.selectedItem.offsetTop );
+	}
+
+	maybeScroll( oldPosition, newPosition ) {
+		console.log(
+			oldPosition,
+			newPosition,
+			this.itemsContainer.scrollTop,
+			newPosition - this.itemsContainer.scrollTop
+		);
+		var currentPosition = newPosition - this.itemsContainer.scrollTop;
+		if ( 270 >= currentPosition && 0 <= currentPosition ) {
+			return;
+		}
+		if ( oldPosition < newPosition ) {
+			this.itemsContainer.scrollTop = newPosition - 270;
+		} else {
+			this.itemsContainer.scrollTop = newPosition;
+		}
 	}
 
 	followSelectedItem() {
@@ -158,7 +178,8 @@ class CommandPalette {
 		}
 
 		return (
-			-1 < '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(
+			-1 <
+			'0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(
 				char
 			)
 		);
