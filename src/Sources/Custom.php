@@ -7,14 +7,14 @@ class Custom extends Base {
 		return 'Custom';
 	}
 
+	public function getItemsData() {
+		return apply_filters( 'command_palette_custom_items', [] );
+	}
+
 	protected function prepareItems() {
-		$this->addItem(
-			[
-				'id'       => 'google',
-				'title'    => __( 'Google', 'command-palette' ),
-				'url'      => 'https://www.google.com',
-				'category' => __( 'Custom', 'command-palette' ),
-			]
+		array_map(
+			[ $this, 'addItem' ],
+			$this->getItemsData()
 		);
 	}
 }
