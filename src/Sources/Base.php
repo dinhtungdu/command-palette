@@ -21,8 +21,7 @@ abstract class Base {
 			'title'      => '',
 			'script'     => '',
 			'capability' => 'read',
-			'parent'     => '',
-			'category'   => __( 'General', 'command-palette' ),
+			'category'   => '',
 		];
 
 		$data = wp_parse_args( $data, $default );
@@ -37,7 +36,6 @@ abstract class Base {
 			'title'      => $data['title'],
 			'url'        => $data['url'],
 			'category'   => $data['category'],
-			'parent'     => $data['parent'],
 			'capability' => $data['capability'],
 		];
 	}

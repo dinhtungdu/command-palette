@@ -100,9 +100,8 @@ class CommandPalette {
 
 		fuzzy.filter( this.searchInput.value, CPItems, options ).map( el => {
 			this.itemsContainer.innerHTML += `<a
-				href="${el.original.url}" class="item"
-				data-category="${el.original.category}" data-type="${el.original.type}"
-				${el.original.parent ? 'data-parent="' + el.original.parent + '"' : ''}
+				href="${el.original.url}" class="item" data-type="${el.original.type}"
+				${el.original.category ? 'data-category="' + el.original.category + '"' : ''}
 			>
 				<span>${el.string}</span>
 			</a>`;

@@ -107,9 +107,9 @@
 			margin-left: auto;
 		}
 
-		&[data-parent]::after {
+		&[data-category]::after {
 			order: 2;
-			content: attr(data-parent);
+			content: attr(data-category);
 			color: #fff;
 			background: #999;
 			border: 1px solid #999;

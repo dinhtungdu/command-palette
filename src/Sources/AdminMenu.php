@@ -27,7 +27,6 @@ class AdminMenu extends Base {
 				'capability' => $menuItem[1],
 				'title'      => $this->removeSpan( $menuItem[0] ),
 				'url'        => $this->processAdminUrl( $menuItem[2] ),
-				'category'   => __( 'Admin menu', 'command-palette' ),
 			]
 		);
 	}
@@ -40,8 +39,7 @@ class AdminMenu extends Base {
 					'capability' => $menuItem[1],
 					'title'      => $this->removeSpan( $menuItem[0] ),
 					'url'        => $this->processAdminUrl( $menuItem[2] ),
-					'category'   => __( 'Admin menu', 'command-palette' ),
-					'parent'     => $this->items[ $parentMenu ]['title'],
+					'category'   => $this->items[ $parentMenu ]['title'],
 				]
 			);
 		}
