@@ -7,7 +7,7 @@ class SourceProvider {
 	public function getSources() {
 		return apply_filters(
 			'command_palette_sources',
-			[ 'AdminPages', 'Custom' ]
+			[ 'AdminMenu', 'Custom' ]
 		);
 	}
 
