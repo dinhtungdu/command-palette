@@ -119,12 +119,6 @@ class CommandPalette {
 	}
 
 	maybeScroll( oldPosition, newPosition ) {
-		console.log(
-			oldPosition,
-			newPosition,
-			this.itemsContainer.scrollTop,
-			newPosition - this.itemsContainer.scrollTop
-		);
 		var currentPosition = newPosition - this.itemsContainer.scrollTop;
 		if ( 270 >= currentPosition && 0 <= currentPosition ) {
 			return;
