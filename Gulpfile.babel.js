@@ -93,7 +93,10 @@ export function compileStyles() {
 				} )
 			])
 		)
-		.pipe( sourcemaps.write() )
+		.pipe( sourcemaps.write( '.', {
+			includeContent: false,
+			sourceRoot: '../..'
+		} ) )
 		.pipe( gulp.dest( './assets/css/' ) )
 		.pipe( browserSync.stream() );
 }

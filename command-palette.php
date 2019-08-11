@@ -21,7 +21,11 @@ namespace CommandPalette;
 
 defined( 'ABSPATH' ) || die;
 
-define( 'SCP_VER', '1.0.0' );
+if ( defined( 'SCRIPT_DEBUG' ) ) {
+	define( 'SCP_VER', time() );
+} else {
+	define( 'SCP_VER', '1.0.0' );
+}
 define( 'SCP_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SCP_URL', plugin_dir_url( __FILE__ ) );
 

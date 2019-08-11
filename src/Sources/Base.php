@@ -15,13 +15,15 @@ abstract class Base {
 
 	protected function addItem( $data ) {
 		$default = [
-			'type'       => __( 'Link', 'command-palette' ),
-			'id'         => '',
-			'url'        => '',
-			'title'      => '',
-			'script'     => '',
-			'capability' => 'read',
-			'category'   => '',
+			'type'        => __( 'Link', 'command-palette' ),
+			'id'          => '',
+			'url'         => '',
+			'title'       => '',
+			'script'      => '',
+			'capability'  => 'read',
+			'category'    => '',
+			'description' => '',
+			'target'      => '',
 		];
 
 		$data = wp_parse_args( $data, $default );
@@ -30,13 +32,6 @@ abstract class Base {
 			return;
 		}
 
-		$this->items[ $data['id'] ] = [
-			'type'       => $data['type'],
-			'id'         => $data['id'],
-			'title'      => $data['title'],
-			'url'        => $data['url'],
-			'category'   => $data['category'],
-			'capability' => $data['capability'],
-		];
+		$this->items[ $data['id'] ] = $data;
 	}
 }

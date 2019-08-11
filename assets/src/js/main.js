@@ -98,12 +98,17 @@ class CommandPalette {
 
 		this.itemsContainer.innerHTML = '';
 
+		// prettier-ignore
 		fuzzy.filter( this.searchInput.value, CPItems, options ).map( el => {
 			this.itemsContainer.innerHTML += `<a
 				href="${el.original.url}" class="item" data-type="${el.original.type}"
 				${el.original.category ? 'data-category="' + el.original.category + '"' : ''}
+				${el.original.target ? 'target="' + el.original.target + '"' : ''}
 			>
-				<span>${el.string}</span>
+				<span class="text">
+					<span class="title">${el.original.title}</span>
+					${el.original.description ? '<span class="description">' + el.original.description + '</span>' : ''}
+				</span>
 			</a>`;
 		} );
 
