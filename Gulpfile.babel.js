@@ -336,6 +336,7 @@ export function copyBuild() {
 	return gulp
 		.src([
 			'./**/*',
+			'!./assets/**/*.map',
 			'!./assets/src/',
 			'!./assets/src/**',
 			'!./node_modules/',
