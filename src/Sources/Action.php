@@ -4,7 +4,7 @@ namespace CommandPalette\Sources;
 class Action extends Base {
 
 	public function __construct() {
-		add_action( 'admin_enqueue_scripts', [ $this, 'printScriptForAction' ] );
+		add_action( 'command_palette_enqueue_scripts', [ $this, 'printScriptForAction' ] );
 	}
 
 	public function get_id() {
@@ -18,7 +18,8 @@ class Action extends Base {
 				[
 					'id'          => 'delete-cache',
 					'title'       => __( 'Delete Cache', 'command-palette' ),
-					'description' => __( 'Pure Command Palette cache.', 'command-palette' ),
+					'description' => __( 'Clear/pure Command Palette cache.', 'command-palette' ),
+					'capability'  => 'manage_options',
 					'url'         => add_query_arg(
 						[
 							'cp_delete_cache' => 'yes',
@@ -32,12 +33,39 @@ class Action extends Base {
 					'title'       => __( 'Update Permalink', 'command-palette' ),
 					'description' => __( 'Reset permalink structure. Fix the 404 error with pretty URL.', 'command-palette' ),
 					'url'         => admin_url( 'options-permalink.php' ),
+					'capability'  => 'manage_options',
 				],
 				[
 					'id'          => 'update-core',
 					'title'       => __( 'Update WordPress', 'command-palette' ),
 					'description' => __( 'Upgrade or reinstall WordPress Core.', 'command-palette' ),
 					'url'         => admin_url( 'update-core.php' ),
+					'capability'  => 'update_core',
+				],
+				[
+					'id'         => 'update-plugins',
+					'title'      => __( 'Update all plugins', 'command-palette' ),
+					'url'        => admin_url( 'update-core.php' ),
+					'capability' => 'update_plugins',
+				],
+				[
+					'id'          => 'update-themes',
+					'title'       => __( 'Update all themes', 'command-palette' ),
+					'description' => __( 'Please Note: Any customizations you have made to theme files will be lost', 'command-palette' ),
+					'url'         => admin_url( 'update-core.php' ),
+					'capability'  => 'update_themes',
+				],
+				[
+					'id'         => 'allow-search-engine',
+					'title'      => __( 'Allow search engines from indexing this site.', 'command-palette' ),
+					'url'        => admin_url( 'options-reading.php' ),
+					'capability' => 'manage_options',
+				],
+				[
+					'id'         => 'disallow-search-engine',
+					'title'      => __( 'Discourage search engines from indexing this site.', 'command-palette' ),
+					'url'        => admin_url( 'options-reading.php' ),
+					'capability' => 'manage_options',
 				],
 			]
 		);
@@ -47,11 +75,27 @@ class Action extends Base {
 		return apply_filters(
 			'command_palette_actions_data',
 			[
-				'update-permalink' => [
+				'update-permalink'       => [
 					'click' => '.button#submit',
 				],
-				'update-core'      => [
+				'update-core'            => [
 					'click' => '.button#upgrade',
+				],
+				'update-plugins'         => [
+					'click' => '#plugins-select-all',
+					'click' => '.button#upgrade-plugins',
+				],
+				'update-themes'          => [
+					'click' => '#themes-select-all',
+					'click' => '.button#upgrade-themes',
+				],
+				'allow-search-engine'    => [
+					'uncheck' => '#blog_public',
+					'click'   => '.button#submit',
+				],
+				'disallow-search-engine' => [
+					'check' => '#blog_public',
+					'click' => '.button#submit',
 				],
 			]
 		);
@@ -71,6 +115,8 @@ class Action extends Base {
 			$this->prepareScriptForAction( $steps ),
 			$action
 		);
+
+		$script = 'jQuery(document).ready(function(){' . $script . '});';
 
 		wp_add_inline_script( 'command-palette-main', $script );
 	}
@@ -102,7 +148,13 @@ class Action extends Base {
 		foreach ( $steps as $action => $target ) {
 			switch ( $action ) {
 				case 'click':
-					$script .= sprintf( 'jQuery("%s").click();', $target );
+					$script .= sprintf( "jQuery('%s').click();", $target );
+					break;
+				case 'check':
+					$script .= sprintf( "jQuery('%s').prop('checked', true).trigger('change');", $target );
+					break;
+				case 'uncheck':
+					$script .= sprintf( "jQuery('%s').prop('checked', false).trigger('change');", $target );
 					break;
 			}
 		}
