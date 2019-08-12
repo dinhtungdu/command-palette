@@ -19,7 +19,6 @@ abstract class Base {
 			'id'          => '',
 			'url'         => '',
 			'title'       => '',
-			'script'      => '',
 			'capability'  => 'read',
 			'category'    => '',
 			'description' => '',

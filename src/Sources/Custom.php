@@ -9,13 +9,15 @@ class Custom extends Base {
 
 	public function getItemsData() {
 		return apply_filters(
-			'command_palette_custom_items',
+			'command_palette_items_custom',
 			[
-				'wordpress' => [
-					'title'    => 'WordPress',
-					'url'      => 'https://wordpress.org',
-					'target'   => '_blank',
-					'category' => 'External',
+				[
+					'id'          => 'wordpress',
+					'title'       => __( 'WordPress', 'command-palette' ),
+					'description' => __( 'WordPress home page', 'command-palette' ),
+					'url'         => 'https://wordpress.org',
+					'target'      => '_blank',
+					'category'    => __( 'External', 'command-palette' ),
 				],
 			]
 		);

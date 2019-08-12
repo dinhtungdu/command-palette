@@ -16,7 +16,7 @@ class ItemManager {
 		wp_localize_script( 'command-palette-main', 'CPItems', $this->getItemsForCurrentUser() );
 	}
 
-	private function getItemsForCurrentUser() {
+	public function getItemsForCurrentUser() {
 		$items = $this->getCachedItems();
 		$items = apply_filters( 'command_palette_items', $items );
 		$items = array_filter( $items, [ $this, 'filterItemsByCapability' ] );

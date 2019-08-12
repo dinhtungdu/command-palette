@@ -7,6 +7,7 @@ class CommandPalette {
 		this.cacheVariables();
 		this.registerEvents();
 		this.registerKeyboardShortcut();
+		this.removeActionFromUrl();
 	}
 
 	cacheVariables() {
@@ -92,7 +93,7 @@ class CommandPalette {
 	filterItems() {
 		var options = {
 			extract: function( el ) {
-				return el.title;
+				return el.title + ' ' + el.description;
 			}
 		};
 
@@ -187,6 +188,15 @@ class CommandPalette {
 				char
 			)
 		);
+	}
+
+	/**
+	 * We don't want action run twice.
+	 */
+	removeActionFromUrl() {
+		var url = new URL( window.location.href );
+		url.searchParams.delete( 'cp_action' );
+		window.history.replaceState( {}, document.title, url.href );
 	}
 }
 
