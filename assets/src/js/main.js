@@ -93,7 +93,9 @@ class CommandPalette {
 	filterItems() {
 		var options = {
 			extract: function( el ) {
-				return el.title + ' ' + el.description;
+				return (
+					el.title + ' ' + el.description + ' ' + el.category + ' ' + el.id
+				);
 			}
 		};
 
