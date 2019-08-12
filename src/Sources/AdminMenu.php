@@ -4,7 +4,7 @@ namespace CommandPalette\Sources;
 class AdminMenu extends Base {
 
 	public function get_id() {
-		return 'AdminPages';
+		return 'AdminMenu';
 	}
 
 	protected function prepareItems() {

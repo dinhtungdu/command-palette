@@ -12,11 +12,10 @@ class Custom extends Base {
 			'command_palette_custom_items',
 			[
 				'wordpress' => [
-					'title'       => 'WordPress',
-					'description' => 'WordPress home page.',
-					'url'         => 'https://wordpress.org',
-					'target'      => '_blank',
-					'category'    => 'External',
+					'title'    => 'WordPress',
+					'url'      => 'https://wordpress.org',
+					'target'   => '_blank',
+					'category' => 'External',
 				],
 			]
 		);

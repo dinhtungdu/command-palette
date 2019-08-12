@@ -23,6 +23,9 @@ class Plugin {
 
 		$this->NoticeManager = new NoticeManager();
 		$this->NoticeManager->hooks();
+
+		$this->CacheManager = new CacheManager();
+		$this->CacheManager->hooks();
 	}
 
 	public function __get( $name ) {
