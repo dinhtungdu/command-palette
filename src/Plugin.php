@@ -10,22 +10,19 @@ class Plugin {
 			return;
 		}
 
-		$this->AssetManager = new AssetManager();
-		$this->AssetManager->hooks();
+		$this->assetManager = new AssetManager();
+		$this->assetManager->hooks();
 
-		$this->TemplateManager = new TemplateManager();
-		$this->TemplateManager->hooks();
+		$this->templateManager = new TemplateManager();
+		$this->templateManager->hooks();
 
-		$this->SourceProvider = new SourceProvider();
+		$this->sourceProvider = new SourceProvider();
 
-		$this->ItemManager = new ItemManager( $this->SourceProvider->getRegisteredSources() );
-		$this->ItemManager->hooks();
+		$this->itemManager = new ItemManager( $this->SourceProvider->getRegisteredSources() );
+		$this->itemManager->hooks();
 
-		$this->NoticeManager = new NoticeManager();
-		$this->NoticeManager->hooks();
-
-		$this->CacheManager = new CacheManager();
-		$this->CacheManager->hooks();
+		$this->cacheManager = new CacheManager();
+		$this->cacheManager->hooks();
 	}
 
 	public function __get( $name ) {

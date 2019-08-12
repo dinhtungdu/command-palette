@@ -105,7 +105,7 @@ class Action extends Base {
 		if ( ! isset( $_GET['cp_action'] ) ) {
 			return;
 		}
-		$action = $_GET['cp_action'];
+		$action = sanitize_text_field( wp_unslash( $_GET['cp_action'] ) );
 		$steps  = $this->getActionSteps( $action );
 		if ( ! $steps ) {
 			return;
@@ -168,7 +168,7 @@ class Action extends Base {
 		);
 
 		if ( ! isset( $item['type'] ) ) {
-			$item['type'] = 'action';
+			$item['type'] = __( 'Action', 'command-palette' );
 		}
 
 		return $item;
