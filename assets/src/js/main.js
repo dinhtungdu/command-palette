@@ -16,6 +16,7 @@ class CommandPalette {
 		this.searchInput = document.getElementById( 'command-palette-search-input' );
 		this.itemsContainer = document.getElementById( 'command-palette-items' );
 		this.selectedItem = false;
+		this.items = [];
 	}
 
 	registerEvents() {
@@ -41,6 +42,7 @@ class CommandPalette {
 
 	registerKeyboardShortcut() {
 		Mousetrap.bind([ 'shift shift', 'command+shift+p', 'ctrl+shift+p' ], () => {
+			this.maybeFetchItems();
 			this.filterItems();
 			this.showWrapper();
 			this.focusInput();
@@ -58,6 +60,24 @@ class CommandPalette {
 			} );
 
 		Mousetrap.bindGlobal( 'esc', this.hideWrapper.bind( this ) );
+	}
+
+	maybeFetchItems() {
+		if ( 0 < this.items.length ) {
+			return;
+		}
+
+		fetch( ajaxurl + '?action=get_cp_items', {
+			headers: { 'Content-Type': 'application/json' }
+		} )
+			.then( response => response.json() )
+			.then( response => {
+				if ( ! response.success ) {
+					return;
+				}
+				this.items = response.data;
+				this.filterItems();
+			} );
 	}
 
 	showWrapper() {
@@ -99,7 +119,7 @@ class CommandPalette {
 		this.itemsContainer.innerHTML = '';
 
 		// prettier-ignore
-		fuzzy.filter( this.searchInput.value, CPItems, options ).map( el => {
+		fuzzy.filter( this.searchInput.value, this.items, options ).map( el => {
 			this.itemsContainer.innerHTML += `<a
 				href="${el.original.url}" class="item" data-type="${el.original.type}"
 				${el.original.category ? 'data-category="' + el.original.category + '"' : ''}
