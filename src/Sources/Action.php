@@ -16,17 +16,11 @@ class Action extends Base {
 			'command_palette_items_action',
 			[
 				[
-					'id'          => 'delete-cache',
+					'id'          => 'delete-cp-cache',
 					'title'       => __( 'Delete Cache', 'command-palette' ),
 					'description' => __( 'Clear/pure Command Palette cache.', 'command-palette' ),
 					'capability'  => 'manage_options',
-					'url'         => add_query_arg(
-						[
-							'cp_delete_cache' => 'yes',
-							'cp_nonce'        => wp_create_nonce( 'delete-items' ),
-						],
-						admin_url( 'plugins.php' )
-					),
+					'url'         => admin_url( 'plugins.php' ),
 				],
 				[
 					'id'          => 'update-permalink',
@@ -75,6 +69,9 @@ class Action extends Base {
 		return apply_filters(
 			'command_palette_actions_data',
 			[
+				'delete-cp-cache'        => [
+					'click' => '.delete-cp-cache a',
+				],
 				'update-permalink'       => [
 					'click' => '.button#submit',
 				],
@@ -102,6 +99,14 @@ class Action extends Base {
 	}
 
 	public function printScriptForAction() {
+
+		if (
+			! isset( $_GET['cp_nonce'] )
+			|| ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['cp_nonce'] ) ), 'cp-do-action' )
+		) {
+			return;
+		}
+
 		if ( ! isset( $_GET['cp_action'] ) ) {
 			return;
 		}
@@ -146,9 +151,12 @@ class Action extends Base {
 	private function prepareScriptForAction( $steps ) {
 		$script = '';
 		foreach ( $steps as $action => $target ) {
+			if ( defined( 'SCRIPT_DEBUG' ) ) {
+				$script .= sprintf( "console.log(jQuery('%s'));", $target );
+			}
 			switch ( $action ) {
 				case 'click':
-					$script .= sprintf( "jQuery('%s').click();", $target );
+					$script .= sprintf( "jQuery('%s')[0].click();", $target );
 					break;
 				case 'check':
 					$script .= sprintf( "jQuery('%s').prop('checked', true).trigger('change');", $target );
@@ -162,14 +170,25 @@ class Action extends Base {
 	}
 
 	private function addActionProperties( $item ) {
-		$item['url'] = add_query_arg(
-			[ 'cp_action' => $item['id'] ],
-			$item['url']
-		);
+		if ( isset( $item['type'] ) && $item['type'] != __( 'Action', 'command-palette' ) ) {
+			return $item;
+		}
 
 		if ( ! isset( $item['type'] ) ) {
 			$item['type'] = __( 'Action', 'command-palette' );
 		}
+
+		if ( ! $this->getActionSteps( $item['id'] ) ) {
+			return $item;
+		}
+
+		$item['url'] = add_query_arg(
+			[
+				'cp_action' => $item['id'],
+				'cp_nonce'  => wp_create_nonce( 'cp-do-action' ),
+			],
+			$item['url']
+		);
 
 		return $item;
 	}

@@ -18,7 +18,7 @@ class Plugin {
 
 		$this->sourceProvider = new SourceProvider();
 
-		$this->itemManager = new ItemManager( $this->SourceProvider->getRegisteredSources() );
+		$this->itemManager = new ItemManager( $this->sourceProvider->getRegisteredSources() );
 		$this->itemManager->hooks();
 
 		$this->cacheManager = new CacheManager();

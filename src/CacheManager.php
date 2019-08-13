@@ -21,12 +21,12 @@ class CacheManager {
 		$deleteCacheLink = add_query_arg(
 			[
 				'cp_delete_cache' => 'yes',
-				'cp_nonce'        => wp_create_nonce( 'delete-items' ),
+				'cp_cache_nonce'  => wp_create_nonce( 'cp-delete-items' ),
 			],
 			admin_url( 'plugins.php' )
 		);
 
-		$links['delete_cache'] = sprintf(
+		$links['delete-cp-cache'] = sprintf(
 			'<a href="%s">%s</a>',
 			esc_url( $deleteCacheLink ),
 			__( 'Delete cache', 'command-palette' )
@@ -36,7 +36,7 @@ class CacheManager {
 	}
 
 	public function deleteCacheNotice() {
-		if ( ! $this->isDeletingCache ) {
+		if ( ! $this->isDeletingCache() ) {
 			return;
 		}
 
@@ -49,8 +49,8 @@ class CacheManager {
 
 	private function isDeletingCache() {
 		if (
-			! isset( $_GET['cp_nonce'] )
-			|| ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['cp_nonce'] ) ), 'delete-items' )
+			! isset( $_GET['cp_cache_nonce'] )
+			|| ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['cp_cache_nonce'] ) ), 'cp-delete-items' )
 			|| ! isset( $_GET['cp_delete_cache'] )
 			|| 'yes' != sanitize_text_field( wp_unslash( $_GET['cp_delete_cache'] ) )
 		) {

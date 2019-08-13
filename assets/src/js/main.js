@@ -199,6 +199,7 @@ class CommandPalette {
 		var url = new URL( window.location.href );
 		var httpReferals = document.getElementsByName( '_wp_http_referer' );
 		url.searchParams.delete( 'cp_action' );
+		url.searchParams.delete( 'cp_nonce' );
 		window.history.replaceState( {}, document.title, url.href );
 		[ ...httpReferals ].map( input => {
 			input.value = url.href;
