@@ -102,7 +102,7 @@ class Action extends Base {
 
 		if (
 			! isset( $_GET['cp_nonce'] )
-			|| ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['cp_nonce'] ) ), 'cp-do-action' )
+			|| ! wp_verify_nonce( sanitize_key( wp_unslash( $_GET['cp_nonce'] ) ), 'cp-do-action' )
 		) {
 			return;
 		}
@@ -110,7 +110,7 @@ class Action extends Base {
 		if ( ! isset( $_GET['cp_action'] ) ) {
 			return;
 		}
-		$action = sanitize_text_field( wp_unslash( $_GET['cp_action'] ) );
+		$action = sanitize_key( wp_unslash( $_GET['cp_action'] ) );
 		$steps  = $this->getActionSteps( $action );
 		if ( ! $steps ) {
 			return;

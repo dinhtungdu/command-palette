@@ -50,9 +50,9 @@ class CacheManager {
 	private function isDeletingCache() {
 		if (
 			! isset( $_GET['cp_cache_nonce'] )
-			|| ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['cp_cache_nonce'] ) ), 'cp-delete-items' )
+			|| ! wp_verify_nonce( sanitize_key( wp_unslash( $_GET['cp_cache_nonce'] ) ), 'cp-delete-items' )
 			|| ! isset( $_GET['cp_delete_cache'] )
-			|| 'yes' != sanitize_text_field( wp_unslash( $_GET['cp_delete_cache'] ) )
+			|| 'yes' != sanitize_key( wp_unslash( $_GET['cp_delete_cache'] ) )
 		) {
 			return false;
 		}
