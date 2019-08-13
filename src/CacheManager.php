@@ -43,7 +43,7 @@ class CacheManager {
 		printf(
 			'<div class="%1$s"><p>%2$s</p></div>',
 			'notice notice-success is-dismissible',
-			__( 'Deleted cache successfully!', 'command-palette' )
+			esc_html__( 'Deleted cache successfully!', 'command-palette' )
 		);
 	}
 
