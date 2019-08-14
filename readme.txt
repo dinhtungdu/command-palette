@@ -12,7 +12,7 @@ Bring the power of text editor command palette to WordPress Admin.
 
 == Description ==
 
-Command Platte brings powerful of text editor command platte to the WordPress admin area. This plugin adds a modal live search box with a nice looking list of WordPress admin content, which saves your times and clicks.
+Command Platte brings the power of text editor command platte to the WordPress admin area. This plugin adds a modal live search box with a nice looking list of WordPress admin content, which saves your times and clicks.
 
 = FEATURES =
 
@@ -24,7 +24,7 @@ Command Platte brings powerful of text editor command platte to the WordPress ad
 
 = HOW TO USE =
 
-Once the plugin is activated, you can press shift two times or press the key combination: Cmd+Shift+P or Ctrl+Shift+P to open the command palette modal.
+Once the plugin is activated, press shift two times or the key combination: Cmd+Shift+P / Ctrl+Shift+P to open the command palette modal.
 You can start saving your time now by searching and navigating through the list of pages and actions.
 
 = ROAD MAP =
@@ -52,7 +52,7 @@ Follow these steps to install and use the plugin:
 
 = HOW TO USE THE PLUGIN? =
 
-Once the plugin is activated, you can press shift two times or press the key combination: Cmd+Shift+P or Ctrl+Shift+P to open the command palette modal.
+Once the plugin is activated, press shift two times or the key combination: Cmd+Shift+P / Ctrl+Shift+P to open the command palette modal.
 You can start saving your time now by searching and navigating through the list of pages and actions.
 
 = WHERE CAN I CONTRIBUTE MY CODE OR IDEA? =
