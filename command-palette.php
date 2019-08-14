@@ -4,7 +4,7 @@
  * Description: Bring power of text editor command palette to WordPress Admin.
  * Version:     1.0.0
  * Author:      Tung Du
- * Author URI:  https://dinhtung.github.io
+ * Author URI:  https://profiles.wordpress.org/dinhtungdu/
  * Text Domain: command-palette
  * Domain Path: /languages
  * Copyright:   (c) 2019, Tung Du.
