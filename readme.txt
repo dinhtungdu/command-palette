@@ -22,6 +22,11 @@ Command Platte brings powerful of text editor command platte to the WordPress ad
 * Perform WordPress related actions like Update permalink, update WordPress core...
 * Customizable. Custom pages and actions can be added via filters.
 
+= HOW TO USE =
+
+Once the plugin is activated, you can press shift two times or press the key combination: Cmd+Shift+P or Ctrl+Shift+P to open the command palette modal.
+You can start saving your time now by searching and navigating through the list of pages and actions.
+
 = ROAD MAP =
 
 * Add new actions and shortcuts.
