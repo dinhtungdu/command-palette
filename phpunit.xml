@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
-    bootstrap="tests/bootstrap.php"
-    backupGlobals="false"
-    colors="true"
-    convertErrorsToExceptions="true"
-    convertNoticesToExceptions="true"
-    convertWarningsToExceptions="true"
->
-    <testsuites>
-        <testsuite name="unit">
-            <directory prefix="test-" suffix=".php">./tests/</directory>
-            <exclude>./tests/test-sample.php</exclude>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist addUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./src</directory>
-        </whitelist>
-    </filter>
+	bootstrap="tests/phpunit/bootstrap.php"
+	backupGlobals="false"
+	colors="true"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+	verbose="true"
+	>
+	<testsuites>
+		<testsuite name="Command Palette Unit Tests">
+			<directory suffix="Test.php">./tests/phpunit</directory>
+		</testsuite>
+	</testsuites>
+	<filter>
+		<whitelist processUncoveredFilesFromWhitelist="false">
+			<directory suffix=".php">./src</directory>
+		</whitelist>
+		<exclude>
+			<file>./src/Plugin.php</file>
+		</exclude>
+	</filter>
+	<logging>
+		<log type="coverage-text" target="php://stdout" showUncoveredFiles="true"/>
+		<log type="coverage-clover" target="coverage/phpunit/clover.xml" showUncoveredFiles="true"/>
+	</logging>
 </phpunit>
