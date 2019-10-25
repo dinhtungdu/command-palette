@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fa126695d2ee1de3d312ed6aab6d7831",
+    "content-hash": "06737a7bce2f73702f28c0c232a5e620",
     "packages": [],
     "packages-dev": [
         {
@@ -42,16 +42,16 @@
         },
         {
             "name": "10up/wp_mock",
-            "version": "0.4.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/10up/wp_mock.git",
-                "reference": "9019226eb50df275aa86bb15bfc98a619601ee49"
+                "reference": "9927f0c2600d2537e53ac7b17856891ab61dfb36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/10up/wp_mock/zipball/9019226eb50df275aa86bb15bfc98a619601ee49",
-                "reference": "9019226eb50df275aa86bb15bfc98a619601ee49",
+                "url": "https://api.github.com/repos/10up/wp_mock/zipball/9927f0c2600d2537e53ac7b17856891ab61dfb36",
+                "reference": "9927f0c2600d2537e53ac7b17856891ab61dfb36",
                 "shasum": ""
             },
             "require": {
@@ -79,7 +79,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "A mocking library to take the pain out of unit testing for WordPress",
-            "time": "2019-03-16T03:44:39+00:00"
+            "time": "2019-09-16T18:03:59+00:00"
         },
         {
             "name": "antecedent/patchwork",
@@ -2030,7 +2030,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "10up/phpcs-composer": 20
+        "10up/phpcs-composer": 20,
+        "10up/wp_mock": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
