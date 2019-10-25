@@ -18,8 +18,4 @@
 			<directory suffix=".php">./src</directory>
 		</whitelist>
 	</filter>
-	<logging>
-		<log type="coverage-text" target="php://stdout" showUncoveredFiles="true"/>
-		<log type="coverage-clover" target="coverage/phpunit/clover.xml" showUncoveredFiles="true"/>
-	</logging>
 </phpunit>
