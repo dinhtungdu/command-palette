@@ -3,6 +3,7 @@
 Bring the power of text editor command palette to WordPress Admin.
 
 [![Build Status](https://img.shields.io/travis/com/dinhtungdu/command-palette?style=flat-square)](https://travis-ci.com/dinhtungdu/command-palette)
+[![Code Coverage](https://img.shields.io/codecov/c/gh/dinhtungdu/command-palette?style=flat-square)](https://codecov.io/gh/dinhtungdu/command-palette)
 
 ![Command Platte Preview](https://ps.w.org/command-palette/assets/banner-1544x500.png)
 
