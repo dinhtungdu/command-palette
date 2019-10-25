@@ -14,8 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 // Define fake PLUGIN_ABSPATH.
 if ( ! defined( 'PLUGIN_ABSPATH' ) ) {
-	define( 'PLUGIN_ABSPATH', sys_get_temp_dir() . '/wp-content/plugins/wc-vendors-pro/' );
+	define( 'PLUGIN_ABSPATH', sys_get_temp_dir() . '/wp-content/plugins/command-palette/' );
 }
+
+// Defind plugin constant
+define( 'SCP_VER', '1.0.0' );
+define( 'SCP_DIR', PLUGIN_ABSPATH );
+define( 'SCP_URL', 'https://example.com/' );
+
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 require_once __DIR__ . '/includes/CPTestCase.php';
