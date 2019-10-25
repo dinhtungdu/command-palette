@@ -11,12 +11,15 @@ class CacheManager {
 
 	public function deleteCachedItems() {
 		if ( ! $this->isDeletingCache() ) {
-			return;
+			return false;
 		}
 
 		delete_transient( 'command_palette_items' );
 	}
 
+	/**
+	 * @param array $links
+	 */
 	public function addDeleteCacheLink( $links ) {
 		$deleteCacheLink = add_query_arg(
 			[
