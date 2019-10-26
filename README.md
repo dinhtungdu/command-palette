@@ -66,7 +66,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 * **Tung Du** - *Initial work* - [dinhtungdu](https://github.com/dinhtungdu)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/dinhtungdu/command-palette/contributors) who participated in this project.
 
 ## License
 
