@@ -75,6 +75,19 @@ class CacheManagerTest extends CPTestCase {
 		$this->assertStringContainsString( 'parsed-url', array_values( $links )[0] );
 	}
 
+	public function testDeleteCacheNotice_NotRender() {
+		WP_Mock::userFunction( 'wp_verify_nonce' )->andReturnTrue();
+		WP_Mock::userFunction( 'delete_transient' )->andReturnTrue();
+		WP_Mock::passthruFunction( 'sanitize_key' );
+		WP_Mock::passthruFunction( 'wp_unslash' );
+
+		$_GET['cp_cache_nonce']  = 'nonce';
+		$_GET['cp_delete_cache'] = 'no';
+
+		$instance = new CacheManager();
+		$this->assertNull( $instance->deleteCacheNotice() );
+	}
+
 	public function testDeleteCacheNotice() {
 		WP_Mock::userFunction( 'wp_verify_nonce' )->andReturnTrue();
 		WP_Mock::userFunction( 'delete_transient' )->andReturnTrue();
