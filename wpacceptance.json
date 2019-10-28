@@ -4,8 +4,7 @@
         "tests/wpa/*.php"
     ],
 	"exclude": [
-		"node_modules",
-		"vendor"
+		"node_modules"
 	],
     "enforce_clean_db": false,
 	"environment_instructions": [
