@@ -5,9 +5,12 @@ php:
 
 before_script:
   - composer install
+  - npm install 
+  - npm run build
 
 script:
     - vendor/bin/phpunit --coverage-clover=coverage.xml
+    - bash bin/run-wpacceptance.sh
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
