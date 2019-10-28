@@ -1,0 +1,15 @@
+{
+    "name": "command-palette",
+    "tests": [
+        "tests/wpa/*.php"
+    ],
+	"exclude": [
+		"node_modules"
+	],
+    "enforce_clean_db": false,
+	"environment_instructions": [
+		"install wordpress where version is latest and url is http://cp.test",
+		"activate plugin where name is command-palette"
+	],
+	"project_path": "%WP_ROOT%/wp-content/plugins/command-palette"
+}
