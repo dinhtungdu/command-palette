@@ -4,6 +4,9 @@ namespace CommandPalette;
 class ItemManager {
 	private $sources;
 
+	/**
+	 * @todo Passing object is faster than array?
+	 */
 	public function __construct( array $sources ) {
 		$this->sources = $sources;
 	}

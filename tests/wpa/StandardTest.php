@@ -1,7 +1,5 @@
 <?php
 /**
- * Basic tests.
- *
  * @package CommandPalette
  */
 
