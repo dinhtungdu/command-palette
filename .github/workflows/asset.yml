@@ -1,0 +1,13 @@
+name: Plugin asset/readme update
+on:
+  push:
+    branches:
+    - test/github-actions 
+jobs:
+  master:
+    name: Push to master
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: WordPress.org plugin asset/readme update
+      uses: dinhtungdu/action-wordpress-plugin-asset-update@test
