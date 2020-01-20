@@ -2,7 +2,7 @@
 Contributors: dinhtungdu
 Tags: shortcut, workflow, admin menu, quick jump
 Requires at least: 4.3
-Tested up to: 5.2.2
+Tested up to: 5.3
 Requires PHP: 5.6
 Stable tag: 1.0.0
 License: GPLv2 or later
