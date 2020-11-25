@@ -16,7 +16,7 @@ class AdminMenu extends Base {
 		);
 
 		foreach ( $submenu as $parentMenu => $submenuItems ) {
-			if ( ! isset( $this->items[ $parentMenu ] ) {
+			if ( ! isset( $this->items[ $parentMenu ] ) ) {
 				continue;
 			}
 			$this->addSubmenuItems( $parentMenu, $submenuItems );
