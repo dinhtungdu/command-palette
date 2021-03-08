@@ -33,4 +33,4 @@ require __DIR__ . '/vendor/autoload.php';
 
 ( new Plugin() )->registerServices();
 
-load_plugin_textdomain( 'wc-vendors-tax', false, basename( __DIR__ ) . '/languages/' );
+load_plugin_textdomain( 'command-palette', false, basename( __DIR__ ) . '/languages/' );
