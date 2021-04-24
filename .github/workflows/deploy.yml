@@ -1,7 +1,10 @@
 name: Deploy to WordPress.org
-on: [push]
+on:
+  push:
+    branches:
+    - test/github-action
 jobs:
-  tag:
+  gh-action:
     name: New tag
     runs-on: ubuntu-latest
     steps:
@@ -12,3 +15,5 @@ jobs:
         npm run build
     - name: WordPress Plugin Deploy
       uses: dinhtungdu/action-wordpress-plugin-deploy@test
+      with:
+        generate-zip: true
