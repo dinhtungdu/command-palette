@@ -3,7 +3,8 @@ import notify from 'gulp-notify';
 import beeper from 'beeper';
 import plumber from 'gulp-plumber';
 import sourcemaps from 'gulp-sourcemaps';
-import sass from 'gulp-sass';
+import gulpSass from 'gulp-sass';
+import nodeSass from 'node-sass';
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
 import mqpacker from 'css-mqpacker';
@@ -29,6 +30,8 @@ import del from 'del';
 import replace from 'gulp-replace';
 
 import * as pkg from './package.json';
+
+const sass = gulpSass( nodeSass );
 
 const paths = {
 	images: [
