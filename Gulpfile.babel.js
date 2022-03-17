@@ -328,35 +328,48 @@ export const build = gulp.parallel(
 	i18n
 );
 
+const includedFiles = [
+	'./**/*',
+	'!./assets/**/*.map',
+	'!./assets/src/',
+	'!./assets/src/**',
+	'!./node_modules/',
+	'!./node_modules/**',
+	'!./tmp/',
+	'!./tmp/**',
+	'!./releases/',
+	'!./releases/**',
+	'!./tests/',
+	'!./tests/**',
+	'!./bin/',
+	'!./bin/**',
+	'!./composer.json',
+	'!./composer.lock',
+	'!./Gulpfile.babel.js',
+	'!./package.json',
+	'!./package-lock.json',
+	'!./phpcs.xml',
+	'!./wpacceptance.json',
+	'!./phpunit.xml'
+];
+
+export function preparePlugin() {
+	return gulp
+		.src( includedFiles )
+		.pipe( gulp.dest( './plugin/' ) );
+}
+export function cleanPlugin() {
+	return del([ './plugin' ]);
+}
+export const prepare = gulp.series( cleanPlugin, preparePlugin );
+
 /**
  * Copy build files to tmp folder for creating archive
  * @returns {*}
  */
 export function copyBuild() {
 	return gulp
-		.src([
-			'./**/*',
-			'!./assets/**/*.map',
-			'!./assets/src/',
-			'!./assets/src/**',
-			'!./node_modules/',
-			'!./node_modules/**',
-			'!./tmp/',
-			'!./tmp/**',
-			'!./releases/',
-			'!./releases/**',
-			'!./tests/',
-			'!./tests/**',
-			'!./bin/',
-			'!./bin/**',
-			'!./composer.json',
-			'!./composer.lock',
-			'!./Gulpfile.babel.js',
-			'!./package.json',
-			'!./package-lock.json',
-			'!./phpcs.xml',
-			'!./phpunit.xml'
-		])
+		.src( includedFiles )
 		.pipe( gulp.dest( `./tmp/${pkg.name}` ) );
 }
 

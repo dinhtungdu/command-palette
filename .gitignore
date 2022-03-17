@@ -79,7 +79,8 @@ vendor/
 
 # Other, add your own ignored things here.
 .idea/
-releases
+releases/
+plugin/
 *.rej
 tmp
 
