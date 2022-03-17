@@ -4,7 +4,7 @@ Tags: shortcut, workflow, admin menu, quick jump
 Requires at least: 4.3
 Tested up to: 5.2.2
 Requires PHP: 5.6
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 

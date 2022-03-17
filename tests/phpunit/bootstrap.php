@@ -18,7 +18,7 @@ if ( ! defined( 'PLUGIN_ABSPATH' ) ) {
 }
 
 // Defind plugin constant
-define( 'SCP_VER', '1.0.0' );
+define( 'SCP_VER', '1.0.1' );
 define( 'SCP_DIR', PLUGIN_ABSPATH );
 define( 'SCP_URL', 'https://example.com/' );
 

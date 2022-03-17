@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Command Palette
  * Description: Bring power of text editor command palette to WordPress Admin.
- * Version:     1.0.0
+ * Version:     1.0.1
  * Author:      Tung Du
  * Author URI:  https://profiles.wordpress.org/dinhtungdu/
  * Text Domain: command-palette
@@ -24,7 +24,7 @@ defined( 'ABSPATH' ) || die;
 if ( defined( 'SCRIPT_DEBUG' ) ) {
 	define( 'SCP_VER', time() );
 } else {
-	define( 'SCP_VER', '1.0.0' );
+	define( 'SCP_VER', '1.0.1' );
 }
 define( 'SCP_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SCP_URL', plugin_dir_url( __FILE__ ) );
