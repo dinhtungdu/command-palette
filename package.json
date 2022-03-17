@@ -9,7 +9,7 @@
     "dev": "gulp && gulp watch",
     "build": "gulp build",
     "build-zip": "composer install --no-dev -o --ignore-platform-reqs && gulp build && gulp release",
-    "prepare": "composer install --no-dev -o --ignore-platform-reqs && gulp build && gulp prepare",
+    "build-plugin": "composer install --no-dev -o --ignore-platform-reqs && gulp build && gulp prepare",
     "version": "gulp version && git add .",
     "format-scss": "prettier --write \"./assets/src/scss/**/*.scss\"",
     "format-js": "prettier-eslint --write --eslint-config-path=.eslintrc.js --config=.prettierrc \"./assets/src/js/**/*.js\"",

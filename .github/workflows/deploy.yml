@@ -12,7 +12,7 @@ jobs:
     - name: Build
       run: |
         npm install
-        npm run prepare 
+        npm run build-plugin 
     - name: WordPress Plugin Deploy
       id: deploy
       uses: 10up/action-wordpress-plugin-deploy@stable
