@@ -27,7 +27,7 @@
     "babel-eslint": "^10.0.1",
     "babelify": "^10.0.0",
     "beeper": "^1.1.1",
-    "browser-sync": "^2.26.3",
+    "browser-sync": "^2.29.1",
     "browserify": "^16.2.3",
     "browserify-shim": "^3.8.14",
     "css-mqpacker": "^7.0.0",
