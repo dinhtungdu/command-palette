@@ -62,7 +62,7 @@
     "lint-staged": "^8.1.4",
     "node-sass": "^7.0.0",
     "prettier-eslint-cli": "^4.7.1",
-    "stylelint": "^9.10.1",
+    "stylelint": "^15.10.1",
     "stylelint-config-prettier": "^5.0.0",
     "stylelint-config-wordpress": "^13.1.0"
   },
